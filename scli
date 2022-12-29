@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * A Simple PHP CLI
+ * Created by: Albet Novendo
+ * File: SCli
+ * SCli is licensed under MIT.
+ * Contribution: https://github.com/albetnov/scli-php
+ */
+
+use App\Core\Console\Cli;
+
+/**
+ * Define that ASMVC Cli is started.
+ */
+define('ASMVC_CLI_START', true);
+
+/**
+ * Calling autoload. If it's not exist. Install composer's autoload.
+ */
+if (is_dir(__DIR__ . '/vendor/')) {
+    require_once __DIR__ . '/App/Core/bootstrap.php';
+} else {
+    echo "ASMVC will try to install dependencies by running composer install...\n";
+    if (!function_exists('exec')) {
+        echo "Exec function is disabled!\n";
+        exit;
+    }
+    exec("composer install");
+    echo "Installation done!\n";
+    exit;
+}
+
+/**
+ * Validate that ASMVC must be running by CLI interface only.
+ */
+if (PHP_SAPI !== 'cli') {
+    exit('ASMVC Only limited to run in CLI Environment Only' . PHP_EOL);
+}
+
+(new \NunoMaduro\Collision\Provider)->register();
+(new Cli())->register()->load();
