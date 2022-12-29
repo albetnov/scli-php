@@ -1,6 +1,6 @@
 # SCLI-PHP
 
-Slimmed CLI Framework, based from ASMVC CLI Interface + Symfony Console with bare minimum files required
+Slimmed CLI Framework, based from [ASMVC](https://github.com/albetnov/asmvc) CLI Interface + Symfony Console with bare minimum files required
 to parse and run the CLI. Allows you to create a command with fluency while keeping
 the framework as slim as possible.
 
